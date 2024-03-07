@@ -1,83 +1,65 @@
-import { StatusBar } from "react-native"
-import { ButtonLargeSelect } from "../../components/Button/Button"
-import { LargeButtonSelect } from "../../components/Button/StyleButton"
-import { CardSelectClinic } from "../../components/Cards/Cards"
-import { Container, FlatContainerSelect, ScrollContainer } from "../../components/Container/StyleContainer"
-import { CancelLessMargin } from "../../components/Descriptions/StyledDescriptions"
-import { TitleSelect } from "../../components/Title/StyleTitle"
+import { useState } from "react";
+import { Container } from "../../components/Container/Container";
+import HighLightList from "../../components/HighlightList/HighLightList";
+import {
+  ButtonContinue,
+  HighLightListContainer,
+} from "../../components/HighlightList/Style";
+import { TitleSelectClinic } from "./Style";
+import { ButtonTitle } from "../../components/Button/Button";
+import {
+  ButtonLinkMediumCancel,
+  LinkMedium,
+} from "../../components/LinkMedium/LinkMedium";
 
+export const SelectClinic = ({ navigation }) => {
+  const [statusList, setStatusList] = useState("");
+  return (
+    <Container>
+      <TitleSelectClinic>Selecionar Clinica</TitleSelectClinic>
 
-export const SelectCLinic = ({ navigation }) => {
+      <HighLightListContainer>
+        <HighLightList
+          cardTitle={"Clínica Natureh"}
+          cardSubtitle={"São Paulo - SP"}
+          clickButton={statusList === "select"}
+          onPress={() => setStatusList("select")}
+          starText={"4,5"}
+          dayText={"Seg - Sex"}
+        />
+        <HighLightList
+          cardTitle={"Diamond Pró-Mulher"}
+          cardSubtitle={"São Paulo - SP"}
+          clickButton={statusList === "selected"}
+          onPress={() => setStatusList("selected")}
+          starText={"4,8"}
+          dayText={"Seg - Sex"}
+        />
+        <HighLightList
+          cardTitle={"Clinica Villa Lobos"}
+          cardSubtitle={"Taboão - SP"}
+          clickButton={statusList === "selected2"}
+          onPress={() => setStatusList("selected2")}
+          starText={"5,0"}
+          dayText={"Seg - Sex"}
+        />
+        <HighLightList
+          cardTitle={"Clinica Villa Lobos"}
+          cardSubtitle={"Taboão - SP"}
+          clickButton={statusList === "selected2"}
+          onPress={() => setStatusList("selected2")}
+          starText={"5,0"}
+          dayText={"Seg - Sex"}
+        />
+      </HighLightListContainer>
 
-    const dataItens = [
-        {
-            id: 'fsdfsfsdf',
-            localization: 'São Paulo, SP',
-            openTime: 'Seg-Sex',
-            rate: '4,8',
-            name: 'Clínica Natureh'
-        },
-        {
-            id: 'fsdfsfsdf',
-            localization: 'São Paulo, SP',
-            openTime: 'Seg-Sex',
-            rate: '4,5',
-            name: 'Diamond Pró-Mulher'
-        },
-        {
-            id: 'fsdfsfsdf',
-            localization: 'Taboão, SP',
-            openTime: 'Seg-Sab',
-            rate: '4,2',
-            name: 'Clínica Villa Lobos'
-        },
-        {
-            id: 'fsdfsfsdf',
-            localization: 'Taboão, SP',
-            openTime: 'Seg-Sab',
-            rate: '4,0',
-            name: 'SP Oncologia Clínica'
-        },
-        {
-            id: 'fsdfsfsdf',
-            localization: 'São Paulo, SP',
-            openTime: 'Seg-Sab',
-            rate: '3,9',
-            name: 'Clínica Tolstói'
-        },
-        {
-            id: 'fsdfsfsdf',
-            localization: 'São Paulo, SP',
-            openTime: 'Seg-Sab',
-            rate: '3,9',
-            name: 'Clínica Vila Alpina'
-        },
-    ]
+      <ButtonContinue onPress={() => navigation.replace("SelectDoctor")}>
+        <ButtonTitle>Continuar</ButtonTitle>
+      </ButtonContinue>
 
-    return (
-
-            <Container>
-
-                <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-                <TitleSelect>Selecionar clínica</TitleSelect>
-
-                <FlatContainerSelect
-                    data={dataItens}
-                    renderItem={({ item }) =>
-                        <CardSelectClinic openTime={item.openTime} name={item.name} rate={item.rate} localization={item.localization} />}
-
-                    keyExtractor={item => item.id}
-
-                    showsVerticalScrollIndicator={false}
-                />
-
-                <ButtonLargeSelect onPress={() => { navigation.navigate("SelectDoctor") }} text={"Continuar"} />
-
-                <CancelLessMargin>Cancelar</CancelLessMargin>
-
-            </Container>
-
-    )
-
-}
+      <ButtonLinkMediumCancel>
+        <LinkMedium>Cancelar</LinkMedium>
+      </ButtonLinkMediumCancel>
+    </Container>
+  );
+};

@@ -1,85 +1,107 @@
-import { SendButton } from "../../components/Button/Button"
-import { ButtonSend } from "../../components/Button/StyleButton"
-import { BoxAgeEmail, BoxBtn, BoxDescription, BoxViewImageImport, Container, ScrollContainer, ViewImageImport } from "../../components/Container/StyleContainer"
-import { CardBackLess, CardCancel, CardCancelLess, DescriptionDoc, DescriptionPassword } from "../../components/Descriptions/Descriptions"
-import { ViewImage } from "../../components/Images/StyleImages"
-import { HighInputBox, HighInputBoxGrey, InputBox, LargeInputTextBox } from "../../components/InputBox/InputBox"
-import { Label } from "../../components/Label/Label"
-import { TitleProfile } from "../../components/Title/StyleTitle"
-import { Line, TitleImage } from "./Style"
+import { MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
+import { Container, ContainerUser } from "../../components/Container/Container";
+import {
+  CancelButton,
+  CancelButtonText,
+  DoctorImageBig,
+  DoctorPrescriptionBox,
+  DoctorPrescriptionBoxImages,
+  DoctorPrescriptionBoxSmall,
+  DoctorPrescriptionContainer,
+  DoctorPrescriptionText,
+  DoctorPrescriptionTitle,
+  InfoDoctorBox,
+  InfoDoctorText,
+  SendButton,
+  SendButtonText,
+  SendCancelButtonContainer,
+  TitleViewPrescription,
+} from "./Style";
+import {
+  ButtonLinkMediumCancel,
+  LinkMedium,
+} from "../../components/LinkMedium/LinkMedium";
 
-export const ViewPrescription = ({ navigation }) => {
-    return (
-        <>
-            <ScrollContainer>
+export const ViewPrescription = ({navigation}) => {
+  return (
+    <ContainerUser>
+      <Container>
+        <DoctorImageBig source={require("../../assets/DoctorImageBig.png")} />
 
-                <Container>
+        <TitleViewPrescription>Dr. Claudio</TitleViewPrescription>
 
-                    <ViewImage source={require("../../assets/ney.webp")} />
+        <InfoDoctorBox>
+          <InfoDoctorText>Clinico geral</InfoDoctorText>
+          <InfoDoctorText>CRM-15286 </InfoDoctorText>
+        </InfoDoctorBox>
 
-                    <TitleProfile>Dr. Ney</TitleProfile>
+        <DoctorPrescriptionContainer>
+          <DoctorPrescriptionTitle>
+            Descrição da consulta
+          </DoctorPrescriptionTitle>
+          <DoctorPrescriptionBox>
+            <DoctorPrescriptionText>
+              O paciente possuí uma infecção no ouvido. Necessário repouse de 2
+              dias e acompanhamento médico constante
+            </DoctorPrescriptionText>
+          </DoctorPrescriptionBox>
+        </DoctorPrescriptionContainer>
 
-                    <BoxDescription>
-                        <DescriptionDoc description={"Cliníco geral"} />
-                        <DescriptionDoc description={"CRM-15286"} />
-                    </BoxDescription>
+        <DoctorPrescriptionContainer>
+          <DoctorPrescriptionTitle>
+            Diagnóstico do paciente
+          </DoctorPrescriptionTitle>
+          <DoctorPrescriptionBoxSmall>
+            <DoctorPrescriptionText>Infecção no ouvido</DoctorPrescriptionText>
+          </DoctorPrescriptionBoxSmall>
+        </DoctorPrescriptionContainer>
 
-                    <HighInputBoxGrey
-                        fieldHeight={350}
-                        placeholderTextColor={"#A1A1A1"}
-                        textLabel={"Descrição da consulta"}
-                        placeholder={"Descrição"}
-                        editable={true}
-                        fieldWidth={90}
-                    />
+        <DoctorPrescriptionContainer>
+          <DoctorPrescriptionTitle>Prescrição médica</DoctorPrescriptionTitle>
+          <DoctorPrescriptionBox>
+            <DoctorPrescriptionText>Medicamento: Advil</DoctorPrescriptionText>
+            <DoctorPrescriptionText>Dosagem: 50 mg</DoctorPrescriptionText>
+            <DoctorPrescriptionText>
+              Frequência: 3 vezes ao dia
+            </DoctorPrescriptionText>
+            <DoctorPrescriptionText>Duração: 3 dias </DoctorPrescriptionText>
+          </DoctorPrescriptionBox>
+        </DoctorPrescriptionContainer>
 
-                    <InputBox
-                        placeholderTextColor={"#A1A1A1"}
-                        textLabel={"Diagnóstico do paciente"}
-                        placeholder={"Diagnóstico"}
-                        editable={true}
-                        fieldWidth={90}
-                    />
+        <DoctorPrescriptionContainer>
+          <DoctorPrescriptionTitle>Exames médicos</DoctorPrescriptionTitle>
+          <DoctorPrescriptionBoxImages>
+            <SimpleLineIcons name="exclamation" size={24} color={"#4E4B59"} />
+            <DoctorPrescriptionText>
+              Nenhuma foto informada
+            </DoctorPrescriptionText>
+          </DoctorPrescriptionBoxImages>
+        </DoctorPrescriptionContainer>
 
-                    <HighInputBoxGrey
-                        // fieldHeight={350}
-                        placeholderTextColor={"#A1A1A1"}
-                        textLabel={"Prescrição médica"}
-                        placeholder={"Prescrição"}
-                        editable={true}
-                        fieldWidth={90}
-                    />
-
-                    <BoxViewImageImport>
-                        
-                        <Label textLabel={"Exames médicos"} />
-
-                        <ViewImageImport>
-                            <TitleImage>{"[ ! ] Nenhuma foto informada"}</TitleImage>
-                        </ViewImageImport>
-
-                    </BoxViewImageImport>
-
-                    <BoxBtn>
-                        <SendButton text={"Enviar"} />
-                        <CardCancel text={"Cancelar"} />
-                    </BoxBtn>
-
-                    <Line/>
-
-                    <HighInputBoxGrey
-                        // fieldHeight={350}
-                        placeholderTextColor={"#A1A1A1"}
-                        placeholder={"Resultado do exame"}
-                        editable={true}
-                        fieldWidth={90}
-                    />
-
-                    <CardBackLess onPressCancel={() => { navigation.navigate("PatientConsultation") }} text={"Voltar"}/>
-
-                </Container>
-
-            </ScrollContainer>
-        </>
-    )
-}
+        <SendCancelButtonContainer>
+          <SendButton>
+            <MaterialCommunityIcons
+              name="camera-plus-outline"
+              color={"#ffffff"}
+              size={24}
+            />
+            <SendButtonText>Enviar</SendButtonText>
+          </SendButton>
+          <CancelButton>
+            <CancelButtonText>Cancelar</CancelButtonText>
+          </CancelButton>
+        </SendCancelButtonContainer>
+        <DoctorPrescriptionContainer>
+          <DoctorPrescriptionBox>
+            <DoctorPrescriptionText>
+              Resultado do exame de sangue : tudo normal
+            </DoctorPrescriptionText>
+          </DoctorPrescriptionBox>
+        </DoctorPrescriptionContainer>
+        <ButtonLinkMediumCancel onPress={() => navigation.replace("HomeScreen_Patient")}>
+          <LinkMedium>Voltar</LinkMedium>
+        </ButtonLinkMediumCancel>
+      </Container>
+    </ContainerUser>
+  );
+};

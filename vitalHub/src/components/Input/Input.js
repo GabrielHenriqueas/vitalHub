@@ -1,225 +1,90 @@
-import { StyleSheet, View } from "react-native";
-import { InputHigh, InputHighGrey, InputNumeric, InputProfile, InputText, InputTextLarge } from "./StyleInput";
-import RNPickerSelect from 'react-native-picker-select';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
+export const Input = styled.TextInput.attrs({
+  placeholderTextColor: "#34898f",
+})`
+  width: 90%;
+  height: 53px;
+  margin-top: 15px;
+  padding: 16px;
+  border: 2px solid #49b3ba;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "MontserratAlternates_600SemiBold";
+  color: #34898f;
+`;
 
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-// import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+export const InputCodeBox = styled.View`
+  width: 90%;
+  height: 62px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
 
-export function Input({
-    placeholder,
-    fieldValue,
-    onChangeText,
-    keyboardType,
-    maxLength,
-    placeholderTextColor,
-    editable = true,
-    secureTextEntry = false
-}) {
-    return (
-        <InputText
-            editable={editable}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            placeholderTextColor={placeholderTextColor}
-            maxLength={maxLength}
-            value={fieldValue}
-            onChangeText={onChangeText}
-            secureTextEntry={secureTextEntry}
-        />
-    )
-}
+  margin-top: 50px;
+  margin-bottom: 20px;
+`;
 
+export const InputCode = styled.TextInput.attrs({
+  placeholderTextColor: "#33303E",
+})`
+  font-family: "Quicksand_600SemiBold";
+  font-size: 40px;
+  width: 62px;
+  height: 62px;
+  border: 2px solid #77cacf;
+  border-radius: 5px;
+  padding-left: 20px;
+  color: #34898f;
+`;
 
+export const InputUserEdit = styled.TextInput.attrs({
+  placeholderTextColor: "#33303E",
+})`
+  width: 100%;
+  height: 53px;
 
-export const InputSelect = () => {
-    const pickerStyles = {
-        inputIOS: style.pickerInput,
-        inputAndroid: style.pickerInput,
-        placeholder: { color: '#34898F', },
-    };
-    const placeholder = {
-        label: 'Selecionar horário',
-        value: null,
-        color: '#34898F',
-    };
+  background-color: #f5f3f3;
+  color: #33303e;
 
-    return (
-        <View style={{ width: 356 }}>
-            <RNPickerSelect
-                useNativeAndroidPickerStyle={false}
-                style={style}
-                Icon={() => {
-                    return <FontAwesomeIcon icon={faCaretDown} color='#34898F' size={22} />
-                }}
-                placeholder={{
-                    label: 'Selecione um valor',
-                    value: null,
-                    color: '#34898F'
-                }}
-                onValueChange={(value) => console.log(value)}
-                items={[
-                    { label: "JavaScript", value: "JavaScript" },
-                    { label: "TypeScript", value: "TypeScript" },
-                    { label: "Python", value: "Python" },
-                    { label: "Java", value: "Java" },
-                    { label: "C++", value: "C++" },
-                    { label: "C", value: "C" },
-                ]}
-            />
-        </View>
-    )
-}
+  font-size: 14px;
+  font-family: "MontserratAlternates_500Medium";
 
-const style = StyleSheet.create({
-    inputIOS: {
-        fontSize: 16,
-        padding: 16,
-        borderWidth: 2,
-        borderColor: '#60BFC5',
-        borderRadius: 5,
-        color: '#34898F',
-        alignContent: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'MontserratAlternates_600SemiBold'
-    },
-    inputAndroid: {
-        fontSize: 16,
-        padding: 16,
-        borderWidth: 2,
-        borderColor: '#60BFC5',
-        borderRadius: 5,
-        color: '#34898F',
-        alignItems: 'center',
-        justifyContent: 'center',
+  border-radius: 5px;
+  padding-left: 20px;
+`;
+export const InputUserEditSmall = styled.TextInput.attrs({
+  placeholderTextColor: "#33303E",
+})`
+  width: 100%;
+  height: 53px;
 
-        fontFamily: 'MontserratAlternates_600SemiBold'
-    },
-    iconContainer: {
-        top: '31%',
-        marginRight: 10
-    },
-    placeholder: {
-        color: '#34898F',
-    }
-})
+  background-color: #f5f3f3;
+  color: #33303e;
 
+  font-size: 14px;
+  font-family: "MontserratAlternates_500Medium";
 
-export function NumericInput({
-    placeholder,
-    fieldValue,
-    onChangeText,
-    keyboardType = 'numeric',
-    maxLength,
-    placeholderTextColor,
-    editable = true
-}) {
-    return (
-        <InputNumeric
-            editable={editable}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            placeholderTextColor={placeholderTextColor}
-            maxLength={maxLength}
-            value={fieldValue}
-            onChangeText={onChangeText}
-        />
-    )
-}
+  border-radius: 5px;
+  padding-left: 20px;
+`;
+export const InputBig = styled.TextInput.attrs({
+  placeholderTextColor: "#34898F",
+})`
+  width: 100%;
+  height: 121px;
 
-export function ProfileInput({
-    placeholder,
-    fieldValue,
-    onChangeText,
-    keyboardType,
-    maxLength,
-    placeholderTextColor,
-    editable = true
-}) {
-    return (
-        <InputProfile
-            editable={editable}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            placeholderTextColor={placeholderTextColor}
-            maxLength={maxLength}
-            value={fieldValue}
-            onChangeText={onChangeText}
-        />
-    )
-}
+  /* background-color: #f5f3f3; */
+  color: #34898f;
 
-export function HighInput({
-    placeholder,
-    fieldValue,
-    onChangeText,
-    keyboardType,
-    maxLength,
-    placeholderTextColor,
-    editable = true,
-    secureTextEntry = false
-}) {
-    return (
-        <InputHigh
-            editable={editable}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            placeholderTextColor={placeholderTextColor}
-            maxLength={maxLength}
-            value={fieldValue}
-            onChangeText={onChangeText}
-            secureTextEntry={secureTextEntry}
-        />
-    )
-}
+  font-size: 14px;
+  font-family: "MontserratAlternates_600SemiBold";
 
-export function HighInputGrey({
-    placeholder,
-    fieldValue,
-    onChangeText,
-    keyboardType,
-    maxLength,
-    placeholderTextColor,
-    editable = true,
-    secureTextEntry = false
-}) {
-    return (
-        <InputHighGrey
-            editable={editable}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            placeholderTextColor={placeholderTextColor}
-            maxLength={maxLength}
-            value={fieldValue}
-            onChangeText={onChangeText}
-            secureTextEntry={secureTextEntry}
-        />
-    )
-}
+  border-radius: 5px;
+  padding-left: 20px;
+  /* padding-top: -100px; */
+  padding-bottom: 80px;
 
-export function LargeInput({
-    placeholder,
-    fieldValue,
-    onChangeText,
-    keyboardType,
-    maxLength,
-    placeholderTextColor,
-    editable = true,
-    secureTextEntry = false
-}) {
-    return (
-        <InputTextLarge
-            editable={editable}
-            placeholder={placeholder}
-            keyboardType={keyboardType}
-            placeholderTextColor={placeholderTextColor}
-            maxLength={maxLength}
-            value={fieldValue}
-            onChangeText={onChangeText}
-            secureTextEntry={secureTextEntry}
-        />
-    )
-}
+  border: 2px solid #49b3ba;
+`;

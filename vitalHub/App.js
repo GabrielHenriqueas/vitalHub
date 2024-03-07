@@ -1,165 +1,148 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'react-native';
-import { Navegacao } from './src/screens/Navegacao/Navegacao';
-import { Login } from './src/screens/Login/Login';
-import { ForgotPassword } from './src/screens/ForgotPassword/ForgotPassword';
+// Import de fontes
+import {
+  useFonts,
+  MontserratAlternates_600SemiBold,
+  MontserratAlternates_500Medium,
+  MontserratAlternates_700Bold,
+} from "@expo-google-fonts/montserrat-alternates";
+import {
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_600SemiBold,
+} from "@expo-google-fonts/quicksand";
 
-import { useFonts, MontserratAlternates_500Medium, MontserratAlternates_600SemiBold, MontserratAlternates_700Bold } from '@expo-google-fonts/montserrat-alternates';
-import { Quicksand_500Medium, Quicksand_600SemiBold } from '@expo-google-fonts/quicksand';
-import { CheckEmail } from './src/screens/CheckEmail/ChekEmail';
-import { RedefinePassword } from './src/screens/RedefinePassword/RedefinePassword';
-import { CreateAccount } from './src/screens/CreateAccount/CreateAccount';
-import { PatientProfile } from './src/screens/PatientProfile/PatientProfile';
-import { MedicalRecords } from './src/screens/MedicalRecords/MedicalRecords';
-import { DoctorConsultation } from './src/screens/DoctorConsultation/DoctorConsultation';
-import { SelectDoctor } from './src/screens/SelectDoctor/SelectDoctor';
-import { SelectCLinic } from './src/screens/SelectClinic/SelectClinic';
-import { PatientConsultation } from './src/screens/PatientConsultation/PatientConsultation';
-import { SelectDate } from './src/screens/SelectDate/SelectDate';
-import { ConsultLocalization } from './src/screens/ConsultLocalization/ConsultLocalization';
-import { ViewPrescription } from './src/screens/ViewPrescription/ViewPrescription';
-import Splash from './src/screens/Splash/Splash';
-import { Main } from './src/components/Main/Main';
+// Import de bibliotecas de navegação
+import { NavigationContainer } from "@react-navigation/native";
+import { Navegation } from "./src/screens/Navegation/Navegation";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+// Import das telas para navegação
+import { Login } from "./src/screens/Login/Login";
+import { CreateAccount } from "./src/screens/CreateAccount/CreateAccount";
+import { PasswordForgot } from "./src/screens/PasswordForgot/PasswordForgot";
+import { EmailCode } from "./src/screens/EmailCode/EmailCode";
+import { PasswordReset } from "./src/screens/PasswordReset/PasswordReset";
+import { UserScreen } from "./src/screens/UserScreen/UserScreen";
+import { UserScreenEdit } from "./src/screens/UserScreenEdit/UserScreenEdit";
+import { HomeScreen_Doctor } from "./src/screens/HomeScreen_Doctor/HomeScreen_Doctor";
+import { MedicalRecordScreen } from "./src/screens/MedicalRecordScreen/MedicalRecordScreen";
+import { HomeScreen_Patient } from "./src/screens/HomeScreen_Patient/HomeScreen_Patient";
+import { SelectClinic } from "./src/screens/SelectClinic/SelectClinic";
+import { SelectDoctor } from "./src/screens/SelectDoctor/SelectDoctor";
+import { SelectData } from "./src/screens/SelectData/SelectData";
+import { ConsultationLocation } from "./src/screens/ConsultationLocation/ConsultationLocation";
+import { ViewPrescription } from "./src/screens/ViewPrescription/ViewPrescription";
+import { Main } from "./src/screens/Main/Main";
 
 
 const Stack = createNativeStackNavigator();
 
-
-
 export default function App() {
-
-  let [fontsLoaded, fontError] = useFonts({
-    MontserratAlternates_500Medium,
+  const [fontsLoaded, fontError] = useFonts({
     MontserratAlternates_600SemiBold,
+    MontserratAlternates_500Medium,
     MontserratAlternates_700Bold,
+    Quicksand_400Regular,
     Quicksand_500Medium,
-    Quicksand_600SemiBold
+    Quicksand_600SemiBold,
   });
 
   if (!fontsLoaded && !fontError) {
     return null;
   }
   return (
-
-    //Container - envolve toda a estrutura de navegação
-    //Navigator - componente para a navegação
-    //Screen - tela
-    //name: nome da tela
-    //component: componente que será chamado
-    //options(title): título da tela
-
+    // container - envolve toda a estrutura de navegação
+    // navigator - componente para a navegação
+    // screen - tela
+    // name: nome da tela
+    // component: componente que será chamado
+    // options(title): título da tela
     <NavigationContainer>
-
-      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
-
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}   >
-
+      <Stack.Navigator>
         <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{ title: 'Splash' }}
+          name="Navegation"
+          component={Navegation}
+          options={{ title: "Navegation" }}
         />
-
-        <Stack.Screen
-          name="Navegação"
-          component={Navegacao}
-          options={{ title: 'Navegação' }}
-        />
-
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{ title: 'Login' }}
+          options={{ title: "Login" }}
         />
-
-        <Stack.Screen
-          name="Main"
-          component={Main}
-
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          component={ForgotPassword}
-          options={{ title: 'ForgotPassword' }}
-        />
-
-        <Stack.Screen
-          name="CheckEmail"
-          component={CheckEmail}
-          options={{ title: 'CheckEmail' }}
-        />
-
-        <Stack.Screen
-          name="RedefinePassword"
-          component={RedefinePassword}
-          options={{ title: 'RedefinePassword' }}
-        />
-
+        <Stack.Screen name="Main" component={Main} />
         <Stack.Screen
           name="CreateAccount"
           component={CreateAccount}
-          options={{ title: 'CreateAccount' }}
+          options={{ title: "CreateAccount" }}
         />
-
         <Stack.Screen
-          name="PatientProfile"
-          component={PatientProfile}
-          options={{ title: 'PatientProfile' }}
+          name="PasswordForgot"
+          component={PasswordForgot}
+          options={{ title: "PasswordForgot" }}
         />
-
         <Stack.Screen
-          name="MedicalRecords"
-          component={MedicalRecords}
-          options={{ title: 'MedicalRecords' }}
+          name="EmailCode"
+          component={EmailCode}
+          options={{ title: "EmailCode" }}
         />
-
         <Stack.Screen
-          name="DoctorConsultation"
-          component={DoctorConsultation}
-          options={{ title: 'DoctorConsultation' }}
+          name="PasswordReset"
+          component={PasswordReset}
+          options={{ title: "PasswordReset" }}
         />
-
+        <Stack.Screen
+          name="UserScreen"
+          component={UserScreen}
+          options={{ title: "UserScreen" }}
+        />
+        <Stack.Screen
+          name="UserScreenEdit"
+          component={UserScreenEdit}
+          options={{ title: "UserScreenEdit" }}
+        />
+        <Stack.Screen
+          name="HomeScreen_Doctor"
+          component={HomeScreen_Doctor}
+          options={{ title: "HomeScreen_Doctor" }}
+        />
+        <Stack.Screen
+          name="MedicalRecordScreen"
+          component={MedicalRecordScreen}
+          options={{
+            title: "MedicalRecordScreen",
+          }}
+        />
+        <Stack.Screen
+          name="HomeScreen_Patient"
+          component={HomeScreen_Patient}
+          options={{ title: "HomeScreen_Patient" }}
+        />
+        <Stack.Screen
+          name="SelectClinic"
+          component={SelectClinic}
+          options={{ title: "SelectClinic" }}
+        />
         <Stack.Screen
           name="SelectDoctor"
           component={SelectDoctor}
-          options={{ title: 'SelectDoctor' }}
-        />
-
-        <Stack.Screen
-          name="SelectClinic"
-          component={SelectCLinic}
-          options={{ title: 'SelectClinic' }}
-        />
-
-        <Stack.Screen
-          name="PatientConsultation"
-          component={PatientConsultation}
-          options={{ title: 'PatientConsultation' }}
-        />
-
-        <Stack.Screen
-          name="SelectDate"
-          component={SelectDate}
-          options={{ title: 'SelectDate' }}
+          options={{ title: "SelectDoctor" }}
         />
         <Stack.Screen
-          name="ConsultLocalization"
-          component={ConsultLocalization}
-          options={{ title: 'ConsultLocalization' }}
+          name="SelectData"
+          component={SelectData}
+          options={{ title: "SelectData" }}
+        />
+        <Stack.Screen
+          name="ConsultationLocation"
+          component={ConsultationLocation}
+          options={{ title: "ConsultationLocation" }}
         />
         <Stack.Screen
           name="ViewPrescription"
           component={ViewPrescription}
-          options={{ title: 'ViewPrescription' }}
+          options={{ title: "ViewPrescription" }}
         />
-
       </Stack.Navigator>
-
     </NavigationContainer>
-
   );
 }
-

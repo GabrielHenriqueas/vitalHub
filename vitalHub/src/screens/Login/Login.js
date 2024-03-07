@@ -1,44 +1,60 @@
+import { Icon } from "react-native-elements";
+import {
+  Button,
+  ButtonGoogle,
+  ButtonTitle,
+  ButtonTitleGoogle,
+} from "../../components/Button/Button";
+import { Container } from "../../components/Container/Container";
+import { Input } from "../../components/Input/Input";
+import {
+  ButtonLinkMedium,
+  LinkMedium,
+} from "../../components/LinkMedium/LinkMedium";
+import { Logo } from "../../components/Logo/Logo";
+import { Title } from "../../components/Title/Title";
+import {
+  ContentAccount,
+  TextAccount,
+  TextAccount2,
+} from "../../components/ContentAccount/ContentAccount";
+import { TouchableOpacity } from "react-native";
 
-import { Title } from "../../components/Title/StyleTitle"
-import { Container } from "../../components/Container/StyleContainer"
-import { Logo } from "../../components/Images/StyleImages"
-import { Input } from "../../components/Input/Input"
-import { LinkMedium } from "../../components/TextMedium/TextMedium"
-import { LinkAccount } from "../../components/Link/Link"
+export const Login = ({ navigation }) => {
+  async function Login() {
+    navigation.navigate("Main");
+  }
+  return (
+    <Container>
+      <Logo source={require("../../assets/logo.png")} />
+      <Title>Entrar ou criar conta</Title>
+      <Input placeholder="Email" />
+      <Input placeholder="Senha" />
 
-import { ButtonGoogle, ButtonNormal } from "../../components/Button/Button"
-import { StatusBar } from "react-native"
+      <ButtonLinkMedium onPress={() => navigation.replace("PasswordForgot")}>
+        <LinkMedium>Esqueceu sua senha?</LinkMedium>
+      </ButtonLinkMedium>
+      <Button onPress={(e) => Login()}>
+        <ButtonTitle>Entrar</ButtonTitle>
+      </Button>
 
-export const Login = ({navigation}) => {
-    return (
+      <ButtonGoogle>
+        <Icon
+          name="google"
+          type="antdesign"
+          color="#496bba"
+          width="16px"
+          height="20px"
+        />
+        <ButtonTitleGoogle>Entrar com o google</ButtonTitleGoogle>
+      </ButtonGoogle>
 
-        <Container>
-
-            <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-            <Logo source={require('../../assets/VitalHub_Logo1.png')} />
-
-            <Title>Entrar ou criar conta</Title>
-
-            <Input
-                placeholder={"Usuário ou E-mail"}
-                placeholderTextColor={'#49B3BA'}
-            />
-
-            <Input
-                placeholder={"Senha"}
-                placeholderTextColor={'#49B3BA'}
-                secureTextEntry={true}
-            />
-
-            <LinkMedium textLink={"Esqueceu sua senha ?"} onPress={() => navigation.navigate("ForgotPassword")} />
-
-            <ButtonNormal onPress={() => navigation.navigate("Main")} text={"Entrar"}/>
-
-            <ButtonGoogle onPress={() => navigation.navigate("Main")} text={"Entrar com Google"}/>
-
-            <LinkAccount onPress={() => navigation.navigate("CreateAccount")}/>
-
-        </Container>
-    )
-}
+      <ContentAccount>
+        <TextAccount>Não tem conta?</TextAccount>
+        <TouchableOpacity onPress={() => navigation.replace("CreateAccount")}>
+          <TextAccount2>Crie uma Agora</TextAccount2>
+        </TouchableOpacity>
+      </ContentAccount>
+    </Container>
+  );
+};

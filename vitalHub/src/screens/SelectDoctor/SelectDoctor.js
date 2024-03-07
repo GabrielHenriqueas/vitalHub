@@ -1,60 +1,55 @@
-import { StatusBar } from "react-native"
-import { Container, FlatContainerSelect, ScrollContainer } from "../../components/Container/StyleContainer"
-import { TitleSelect } from "../../components/Title/StyleTitle"
-import { CardSelectDoctor } from "../../components/Cards/Cards"
-import { ButtonLarge, ButtonLargeSelect } from "../../components/Button/Button"
-import { CancelLessMargin } from "../../components/Descriptions/StyledDescriptions"
+import { useState } from "react";
+import { Container } from "../../components/Container/Container";
+import { TitleSelectDoctor } from "./Style";
+import {
+  ButtonContinue,
+  HighLightListContainer,
+} from "../../components/HighlightList/Style";
+import { HighlightListDoctor } from "../../components/HighlightListDoctor/HighlightListDoctor";
+import { ButtonTitle } from "../../components/Button/Button";
+import {
+  LinkMedium,
+  ButtonLinkMediumCancel,
+} from "../../components/LinkMedium/LinkMedium";
 
+export const SelectDoctor = ({ navigation }) => {
+  const [statusList, setStatusList] = useState("");
 
-export const SelectDoctor = ({navigation}) => {
+  return (
+    <Container>
+      <TitleSelectDoctor>Selecionar Médico</TitleSelectDoctor>
 
-    const image = require("../../assets/ImageCard.png");
-    const dataItens = [
-        {
-            id: 'fsdfsfsdf',
-            doctorArea: 'Dermatóloga, Esteticista',
-            image: image,
-            name: 'Dr Alessandra'
-        },
-        {
-            id: 'fsdfsf',
-            doctorArea: 'Cirurgião, Cardiologista',
-            image: image,
-            name: 'Dr Kumushiro'
-        },
-        {
-            id: 'fsdf',
-            doctorArea: 'Clínico, Pediatra',
-            image: image,
-            name: 'Dr Rodrigo Santos'
-        },
-    ]
+      <HighLightListContainer>
+        <HighlightListDoctor
+          source={{ uri: "https://github.com/gabrielhenriqueas.png" }}
+          doctorName={"Dr. Gabriel"}
+          doctorSpecialization={"urologista"}
+          clickButton={statusList === "select"}
+          onPress={() => setStatusList("select")}
+        />
+        <HighlightListDoctor
+          source={{ uri: "https://github.com/heitorperrotta.png" }}
+          doctorName={"Dr. Heithor Perrotta"}
+          doctorSpecialization={"Pediatra"}
+          clickButton={statusList === "selected"}
+          onPress={() => setStatusList("selected")}
+        />
+        <HighlightListDoctor
+          source={{ uri: "https://github.com/kauameloo.png" }}
+          doctorName={"Dr. Kallan"}
+          doctorSpecialization={"Fonoaudiologo"}
+          clickButton={statusList === "selected2"}
+          onPress={() => setStatusList("selected2")}
+        />
 
-    return (
+        <ButtonContinue onPress={() => navigation.replace("SelectData")}>
+          <ButtonTitle>Continuar</ButtonTitle>
+        </ButtonContinue>
 
-
-
-        <Container>
-            <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
-
-            <TitleSelect>Selecionar Médico</TitleSelect>
-
-            <FlatContainerSelect
-                data={dataItens}
-                renderItem={({ item }) =>
-                    <CardSelectDoctor doctorArea={item.doctorArea} name={item.name} url={image} />}
-                keyExtractor={item => item.id}
-
-                showsVerticalScrollIndicator={false}
-            />
-
-            <ButtonLargeSelect onPress={() => { navigation.navigate("SelectDate") }} text={"Continuar"} />
-
-            <CancelLessMargin>Cancelar</CancelLessMargin>
-
-        </Container>
-
-
-    )
-
-}
+        <ButtonLinkMediumCancel>
+          <LinkMedium>Cancelar</LinkMedium>
+        </ButtonLinkMediumCancel>
+      </HighLightListContainer>
+    </Container>
+  );
+};
