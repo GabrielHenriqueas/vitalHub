@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { ButtonLinkMediumCancel } from "../../components/LinkMedium/LinkMedium";
 
+export const MapsImageView = styled.View`
+  width: 100%;
+  height: 47%;
+`;
+
 export const MapsImage = styled.Image`
   width: 100%;
   height: 47%;
