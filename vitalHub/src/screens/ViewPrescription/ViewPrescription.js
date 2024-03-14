@@ -79,7 +79,7 @@ export const ViewPrescription = ({navigation}) => {
         </DoctorPrescriptionContainer>
 
         <SendCancelButtonContainer>
-          <SendButton>
+          <SendButton onPress={() => navigation.replace("Camera")}>
             <MaterialCommunityIcons
               name="camera-plus-outline"
               color={"#ffffff"}

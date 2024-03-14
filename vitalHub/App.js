@@ -33,6 +33,7 @@ import { SelectData } from "./src/screens/SelectData/SelectData";
 import { ConsultationLocation } from "./src/screens/ConsultationLocation/ConsultationLocation";
 import { ViewPrescription } from "./src/screens/ViewPrescription/ViewPrescription";
 import { Main } from "./src/screens/Main/Main";
+import Camera from "./src/screens/Camera/Camera";
 
 
 const Stack = createNativeStackNavigator();
@@ -141,6 +142,11 @@ export default function App() {
           name="ViewPrescription"
           component={ViewPrescription}
           options={{ title: "ViewPrescription" }}
+        />
+        <Stack.Screen
+          name="Camera"
+          component={Camera}
+          options={{ title: "Camera" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
