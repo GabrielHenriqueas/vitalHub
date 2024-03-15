@@ -1,11 +1,11 @@
 import { Modal, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import { Camera, CameraType } from 'expo-camera';
+import { Camera, CameraType, FlashMode } from 'expo-camera';
 import { useEffect, useState, useRef } from 'react';
 import * as MediaLibary from 'expo-media-library'
 
 import { FontAwesome } from '@expo/vector-icons'
 
-export default function App()  {
+export default function CameraScreen({ navigation }) {
 
   const cameraRef = useRef(null)
 
@@ -15,7 +15,7 @@ export default function App()  {
 
   const [tipoCamera, setTipoCamera] = useState(CameraType.front)
 
-  const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.off);
+  const [lanterna, setLanterna] = useState(Camera.Constants.FlashMode.off)
 
   useEffect(() => {
     (async () => {
@@ -32,6 +32,7 @@ export default function App()  {
       }).catch(error => {
         alert.apply('Não foi possivel processar a foto')
       })
+      setOpenModal(false)
   }
 
   async function CapturePhoto() {
@@ -59,7 +60,7 @@ export default function App()  {
         style={styles.camera}
         type={tipoCamera}
         ratio='16:9'
-        flashMode={flashMode}
+        flashMode={lanterna}
       >
 
         <View style={styles.viewFlip}>
@@ -73,7 +74,7 @@ export default function App()  {
       </Camera>
 
       <View
-        style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}
+        style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}
       >
         <TouchableOpacity
           style={styles.btnCapture}
@@ -83,15 +84,18 @@ export default function App()  {
             name='camera' size={23} color='#fff'
           />
         </TouchableOpacity>
+        <TouchableOpacity style={styles.btnFlash} onPress={() => setLanterna(lanterna == Camera.Constants.FlashMode.off ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off)}>
+          <FontAwesome
+            name='flash' size={23} color={lanterna == Camera.Constants.FlashMode.off ? "red" : "white"}
+          />
+        </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.btnFlash}
-          onPress={() => setFlashMode(flashMode === Camera.Constants.FlashMode.off
-            ? Camera.Constants.FlashMode.on
-            : Camera.Constants.FlashMode.off)}
+          style={styles.btnBack}
+          onPress={() => navigation.replace("ViewPrescription")}
         >
           <FontAwesome
-            name='flash' size={23} color='#fff'
+            name='long-arrow-left' size={35} color='#121212'
           />
         </TouchableOpacity>
       </View>
@@ -111,7 +115,7 @@ export default function App()  {
               onPress={() => { ClearPhoto() }}
             >
               <FontAwesome
-                name='trash' size={35} color='#ff111'
+                name='trash' size={35} color='red'
               />
             </TouchableOpacity>
 
@@ -179,12 +183,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
+  
   btnFlash: {
+    
+    backgroundColor: "#121212",
     padding: 20,
     margin: 20,
     width: 60,
     borderRadius: 10,
-    backgroundColor: "#121212",
 
     justifyContent: 'center',
     alignItems: 'center'
@@ -199,6 +205,14 @@ const styles = StyleSheet.create({
   },
 
   btnUpload: {
+    padding: 20,
+    backgroundColor: 'transparent',
+
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  btnBack: {
     padding: 20,
     backgroundColor: 'transparent',
 

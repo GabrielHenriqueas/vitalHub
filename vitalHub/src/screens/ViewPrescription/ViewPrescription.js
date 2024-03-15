@@ -22,7 +22,18 @@ import {
   LinkMedium,
 } from "../../components/LinkMedium/LinkMedium";
 
+import CameraModal from "../../components/CameraModal/CameraModal"
+import { useEffect, useState } from "react";
+
 export const ViewPrescription = ({navigation}) => {
+
+  const [uriCameraCapture, setUriCameraCapture] = useState(false)
+  const [showCameraModal, setShowCameraModal] = useState(false)
+
+  useEffect(() => {
+
+  }, [showCameraModal])
+
   return (
     <ContainerUser>
       <Container>
@@ -102,6 +113,12 @@ export const ViewPrescription = ({navigation}) => {
           <LinkMedium>Voltar</LinkMedium>
         </ButtonLinkMediumCancel>
       </Container>
+
+      <CameraModal
+        viseble={showCameraModal}
+        setUriCameraCapture={setUriCameraCapture}
+        setShowCameraModal={setShowCameraModal}
+      />
     </ContainerUser>
   );
 };
