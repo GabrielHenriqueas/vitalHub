@@ -84,9 +84,9 @@ export default function CameraScreen({ navigation }) {
             name='camera' size={23} color='#fff'
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnFlash} onPress={() => setLanterna(lanterna == Camera.Constants.FlashMode.off ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off)}>
+        <TouchableOpacity style={styles.btnFlash(lanterna)} onPress={() => setLanterna(lanterna == Camera.Constants.FlashMode.off ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off)}>
           <FontAwesome
-            name='flash' size={23} color={lanterna == Camera.Constants.FlashMode.off ? "red" : "white"}
+            name='flash' size={23} color={lanterna == Camera.Constants.FlashMode.off ?  "white" : "red"}
           />
         </TouchableOpacity>
 
@@ -184,9 +184,9 @@ const styles = StyleSheet.create({
   },
 
   
-  btnFlash: {
+  btnFlash: lanterna => ({
     
-    backgroundColor: "#121212",
+    backgroundColor: lanterna ? "#121212" : "red",
     padding: 20,
     margin: 20,
     width: 60,
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: 'center'
-  },
+  }),
 
   btnClear: {
     padding: 20,
